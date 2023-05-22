@@ -141,5 +141,46 @@ public class Biblioteca {
 
     public Biblioteca() {
         this.livros = new ArrayList<>();
+    } 
+    // Métodos para cadastro, edição e busca de livros
+
+    public void cadastrarLivro(Livro livro) {
+        livros.add(livro);
+        System.out.println("Livro cadastrado com sucesso!");
     }
+
+    public void editarLivro(Livro livro, String novoTitulo, String novoAutor) {
+        livro.setTitulo(novoTitulo);
+        livro.setAutor(novoAutor);
+        System.out.println("Livro editado com sucesso!");
+    }
+
+    public void buscarLivro(String titulo) {
+        for (Livro livro : livros) {
+            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
+                livro.exibirInformacoes();
+                return;
+            }
+        }
+        System.out.println("Livro não encontrado na biblioteca.");
+    }
+
+    public static void main  (String[] args) {
+        // Exemplo de uso da biblioteca
+
+        Biblioteca biblioteca = new Biblioteca();
+
+        LivroFisico livroFisico = new LivroFisico("Dom Quixote", "Miguel de Cervantes", 863);
+        biblioteca.cadastrarLivro(livroFisico);
+
+        LivroDigital livroDigital = new LivroDigital("Harry Potter", "J.K. Rowling", "PDF");
+        biblioteca.cadastrarLivro(livroDigital);
+
+        biblioteca.buscarLivro("Dom Quixote");
+
+        biblioteca.editarLivro(livroDigital, "Harry Potter e a Pedra Filosofal", "J.K. Rowling");
+
+        biblioteca.buscarLivro("Harry Potter e a Pedra Filosofal");
+    }
+}
 
