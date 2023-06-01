@@ -22,7 +22,7 @@ public class Cliente {
 	private String senha;
 
 	public Cliente(String code, String nome, String genero, String telefone, String cpf, int token, String senha) {
-		super();
+		//super(); ainda irei implementar
 		this.code = code;
 		this.nome = nome;
 		this.genero = genero;
