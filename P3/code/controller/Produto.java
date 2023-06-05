@@ -5,6 +5,7 @@ public class Produto {
     public int preco;
     public String codigo;
     private int estoque;
+    protected String info;
 
     //toString
     @Override
@@ -55,6 +56,10 @@ public class Produto {
     // metodos
     public void adicionarEstoque(int quantidade) {
         estoque += quantidade;
+    }
+
+    public String getInfo() {
+        return this.info;
     }
 
     public void retirarEstoque(String codigo, int quantidade) {
