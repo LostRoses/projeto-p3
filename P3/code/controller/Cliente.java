@@ -9,8 +9,6 @@ Metodo para exibir o historico de compras
 */
 import java.util.LinkedList;
 
-
-
 public class Cliente {
 	private LinkedList<String> codesFrinds = new LinkedList<String>();
 	private String code;
@@ -22,7 +20,7 @@ public class Cliente {
 	private String senha;
 
 	public Cliente(String code, String nome, String genero, String telefone, String cpf, int token, String senha) {
-		//super(); ainda irei implementar
+		// super(); ainda irei implementar
 		this.code = code;
 		this.nome = nome;
 		this.genero = genero;
@@ -100,12 +98,17 @@ public class Cliente {
 		System.out.println("Amigos:" + codesFrinds);
 	}
 
-
 	@Override
 	public String toString() {
 		return "Cliente [code=" + code + ", codesFrinds=" + codesFrinds + ", cpf=" + cpf + ", genero=" + genero
 				+ ", nome="
 				+ nome + ", senha=" + senha + ", telefone=" + telefone + "]";
+	}
+
+	public void comprarProduto(String codigo, int quantidade) {
+	}
+
+	public void comprarProduto(P3.code.controller.Produto produto, int quantidade) {
 	}
 
 }

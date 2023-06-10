@@ -5,12 +5,15 @@ public class Remedio extends Produto {
 
     public Remedio(String nome, int preco, String codigo, int estoque, String info) {
         super(nome, preco, codigo, estoque);
-        this.info = info;      
+        this.info = info;
     }
-
-    @Override
-    public String getInfo() {
-        return "Caso os sintomas piores, consulte um médico. \n" + info;
-    }
-
 }
+
+/*
+ * @Override
+ * public String getInfo() {
+ * return "Caso os sintomas piores, consulte um médico. \n" + info;
+ * }
+ * 
+ * }
+ */

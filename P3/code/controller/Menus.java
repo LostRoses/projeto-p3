@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Menus {
-    
+
+    protected static final String produtos = null;
     public static LinkedList<Cliente> clientes = new LinkedList<Cliente>();
     public static LinkedList<Empresa> empresas = new LinkedList<Empresa>();
 
@@ -71,8 +72,8 @@ public class Menus {
                                                     }
                                                 }
                                             }
-                                           
-                                        } else if(opCA == 3){
+
+                                        } else if (opCA == 3) {
                                             clientes.getFirst().showFrieds();
                                         }
 
@@ -133,9 +134,8 @@ public class Menus {
                                             dc = in.nextInt();
                                         }
                                     } while (dc != 0);
-                                }
-                                else if(opE == 3){
-                                    //exibir saldo
+                                } else if (opE == 3) {
+                                    // exibir saldo
                                     exibirSaldo();
                                 }
                             } while (opE != 0);
@@ -150,15 +150,14 @@ public class Menus {
                     }
                 } while (cl != 0);
                 break;
-            }else if(op == 9){
+            } else if (op == 9) {
                 Empresa empresa = new Empresa("teste", "12345678", "12345678901234", 10000, "123");
                 Cliente cliente = new Cliente("hugo", "Hugo", "M", "12348765", "12345678901", 100, "123");
                 empresas.add(empresa);
                 clientes.add(cliente);
-            } 
-            else if (op == 0) {
+            } else if (op == 0) {
                 System.out.println("ENCERRANDO...");
-            }else {
+            } else {
                 System.out.println("Opção inválida...");
                 throw new IllegalAccessException("");
             }
@@ -263,11 +262,11 @@ public class Menus {
         }
     }
 
-    public static void compraProduto(){
-        // onde tiver getFirst mudar para uma busca 
+    public static void compraProduto() {
+        // onde tiver getFirst mudar para uma busca
         Scanner in = new Scanner(System.in);
         boolean vf;
-        int op=0;
+        int op = 0;
         System.out.println("");
         System.out.println("Digite os dados abaixo para realizar uma compra.");
         System.out.print("Nome: ");
@@ -280,14 +279,14 @@ public class Menus {
             for (int i = 0; i < clientes.size(); i++) {
                 Cliente aux = clientes.get(i);
                 if (aux.getNome().equalsIgnoreCase(nome) && aux.getSenha().equals(senha)) {
-                    do{
+                    do {
                         empresas.getFirst().showProdutos();
                         System.out.println("");
                         System.out.print("Digite o codigo do produto que deseja comprar: ");
                         String code = in.next();
                         vf = buscaProduto(code);
-                        if (vf == true){
-                            int t=0;
+                        if (vf == true) {
+                            int t = 0;
                             Produto p = empresas.getFirst().produtos.get(t);
                             for (t = 0; t < Empresa.produtos.size(); t++) {
                                 p = Empresa.produtos.get(t);
@@ -295,16 +294,16 @@ public class Menus {
                                     break;
                                 }
                             }
-                            if(aux.getToken() >= p.getPreco()){
-                                Empresa.produtos.getFirst().retirarEstoque(code, 1);
+                            if (aux.getToken() >= p.getPreco()) {
+                                Empresa.produtos.getFirst().retirarEstoque(1);
                                 aux.setToken(aux.getToken() - p.getPreco());
                                 System.out.println("saldo atual: " + aux.getToken());
-                            }else{
+                            } else {
                                 System.out.println("");
                                 System.out.println("Saldo insuficiente... deposite tokens para futuras compras.");
                                 System.out.println("");
                             }
-                        }else{
+                        } else {
                             System.out.println("");
                             System.out.println("Código informado inválido... Deseja tentar novamente?");
                             System.out.println("[0] para Não / [1] para Sim.");
@@ -312,22 +311,21 @@ public class Menus {
                             op = in.nextInt();
                         }
 
-                    }while (op != 0);
+                    } while (op != 0);
                 }
             }
-        }else{
+        } else {
             System.out.println("");
             System.out.println("Nome ou senha incorretos... deseja tentar novamente?");
             System.out.println("[0] para Não / [1] para Sim.");
             int opc = in.nextInt();
-            if(opc==1){
+            if (opc == 1) {
                 compraProduto();
-            }else{
+            } else {
                 System.out.println("");
             }
         }
     }
-
 
     public static void compraToken() {
         Scanner in = new Scanner(System.in);
@@ -361,9 +359,10 @@ public class Menus {
         System.out.println("[3] para exibir saldo.");
         System.out.println("[0] para Sair!");
     }
-    public static void exibirSaldo(){
+
+    public static void exibirSaldo() {
         System.out.println("");
-        System.out.println("[ R$"+empresas.getFirst().getSaldo()+" ]");
+        System.out.println("[ R$" + empresas.getFirst().getSaldo() + " ]");
         System.out.println("");
     }
 
@@ -624,7 +623,7 @@ public class Menus {
         empresas.add(empresa);// Adiciona a lista de empresas
         System.out.println("");
         System.out.println("Empresa cadastrada com sucesso!");
-        
+
     }
 
     public static boolean buscaLoginEmpresa(String cnpj, String senha) {

@@ -1,4 +1,4 @@
-package P3.code.controller;
+package P3.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,13 +16,14 @@ import javax.swing.SwingUtilities;
 import P3.code.controller.Cliente;
 import P3.code.controller.Empresa;
 import P3.code.controller.Menus;
+import P3.code.controller.Produto;
 
-public class Produto extends JFrame {
+public class MainFrame extends JFrame {
 
     private JButton clienteButton;
     private JButton empresaButton;
 
-    public Produto() {
+    public MainFrame() {
         setTitle("Menu Principal");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +34,7 @@ public class Produto extends JFrame {
         mainPanel.setLayout(new BorderLayout());
 
         // Painel de botões
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 3, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         clienteButton = new JButton("Cliente");
         empresaButton = new JButton("Empresa");
         buttonPanel.add(clienteButton);
@@ -59,9 +60,6 @@ public class Produto extends JFrame {
         });
     }
 
-    public Produto(String nome, int preco, String codigo, int estoque) {
-    }
-
     private void abrirCadastroCliente() {
         JFrame clienteFrame = new JFrame("Cadastro de Cliente");
         clienteFrame.setSize(400, 300);
@@ -69,7 +67,7 @@ public class Produto extends JFrame {
         clienteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel clientePanel = new JPanel();
-        clientePanel.setLayout(new GridLayout(10, 4, 6, 6));
+        clientePanel.setLayout(new GridLayout(7, 2, 10, 10));
 
         JLabel nomeLabel = new JLabel("Nome:");
         JTextField nomeField = new JTextField();
@@ -105,6 +103,7 @@ public class Produto extends JFrame {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 
                 clienteFrame.dispose();
+                abrirCompraProduto(cliente);
             }
         });
 
@@ -133,7 +132,7 @@ public class Produto extends JFrame {
         empresaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel empresaPanel = new JPanel();
-        empresaPanel.setLayout(new GridLayout(10, 4, 6, 6));
+        empresaPanel.setLayout(new GridLayout(7, 2, 10, 10));
 
         JLabel nomeLabel = new JLabel("Nome:");
         JTextField nomeField = new JTextField();
@@ -165,6 +164,7 @@ public class Produto extends JFrame {
                 JOptionPane.showMessageDialog(null, "Empresa cadastrada com sucesso!");
 
                 empresaFrame.dispose();
+                abrirCadastroProduto(empresa);
             }
         });
 
@@ -184,9 +184,61 @@ public class Produto extends JFrame {
         empresaFrame.setVisible(true);
     }
 
+    private void abrirCadastroProduto(Empresa empresa) {
+        JFrame produtoFrame = new JFrame("Cadastro de Produto");
+        produtoFrame.setSize(400, 300);
+        produtoFrame.setLocationRelativeTo(null);
+        produtoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel produtoPanel = new JPanel();
+        produtoPanel.setLayout(new GridLayout(4, 2, 10, 10));
+
+        JLabel nomeLabel = new JLabel("Nome:");
+        JTextField nomeField = new JTextField();
+
+        JLabel precoLabel = new JLabel("Preço:");
+        JTextField precoField = new JTextField();
+
+        JLabel codigoLabel = new JLabel("Código:");
+        JTextField codigoField = new JTextField();
+
+        JLabel estoqueLabel = new JLabel("Estoque:");
+        JTextField estoqueField = new JTextField();
+
+        JButton cadastrarButton = new JButton("Cadastrar");
+        cadastrarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome = nomeField.getText();
+                int preco = Integer.parseInt(precoField.getText());
+                String codigo = codigoField.getText();
+                int estoque = Integer.parseInt(estoqueField.getText());
+
+                final Produto produto = new Produto(codigo, estoque, codigo, estoque);
+                empresa.buscarProduto(produto);
+
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+
+                produtoFrame.dispose();
+            }
+        });
+
+        produtoPanel.add(nomeLabel);
+        produtoPanel.add(nomeField);
+        produtoPanel.add(precoLabel);
+        produtoPanel.add(precoField);
+        produtoPanel.add(codigoLabel);
+        produtoPanel.add(codigoField);
+        produtoPanel.add(estoqueLabel);
+        produtoPanel.add(estoqueField);
+        produtoPanel.add(cadastrarButton);
+
+        produtoFrame.add(produtoPanel);
+        produtoFrame.setVisible(true);
+    }
+
     private void abrirCompraProduto(Cliente cliente) {
         JFrame compraFrame = new JFrame("Compra de Produto");
-        compraFrame.setSize(400, 300);
+        compraFrame.setSize(400, 200);
         compraFrame.setLocationRelativeTo(null);
         compraFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -205,27 +257,9 @@ public class Produto extends JFrame {
                 String codigo = codigoField.getText();
                 int quantidade = Integer.parseInt(quantidadeField.getText());
 
-                boolean produtoEncontrado = false;
-                for (Empresa empresa : Menus.empresas) {
-                    final Produto produto = empresa.buscarProduto(codigo);
-                    if (produto != null) {
-                        if (produto.getEstoque() >= quantidade) {
-                            produto.retirarEstoque(quantidade);
-                            cliente.comprarProduto(produto, quantidade);
-                            JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
-                            produtoEncontrado = true;
-                            break;
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Estoque indisponível!");
-                            produtoEncontrado = true;
-                            break;
-                        }
-                    }
-                }
+                cliente.comprarProduto(codigo, quantidade);
 
-                if (!produtoEncontrado) {
-                    JOptionPane.showMessageDialog(null, "Produto não encontrado!");
-                }
+                JOptionPane.showMessageDialog(null, "Compra realizada com sucesso!");
 
                 compraFrame.dispose();
             }
@@ -241,27 +275,11 @@ public class Produto extends JFrame {
         compraFrame.setVisible(true);
     }
 
-    public void retirarEstoque(int quantidade) {
-    }
-
-    public int getEstoque() {
-        return 0;
-    }
-
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Produto frame = new Produto();
-                frame.setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
-    }
-
-    public String getCodigo() {
-        return null;
-    }
-
-    public int getPreco() {
-        return 0;
     }
 }
