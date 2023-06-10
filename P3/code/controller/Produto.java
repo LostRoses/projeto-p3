@@ -21,6 +21,10 @@ public class Produto extends JFrame {
 
     private JButton clienteButton;
     private JButton empresaButton;
+    private String nome;
+    private int preco;
+    private String codigo;
+    private int estoque;
 
     public Produto() {
         setTitle("Menu Principal");
@@ -245,7 +249,7 @@ public class Produto extends JFrame {
     }
 
     public int getEstoque() {
-        return 0;
+        return this.estoque;
     }
 
     public static void main(String[] args) throws IllegalAccessException {
@@ -258,10 +262,14 @@ public class Produto extends JFrame {
     }
 
     public String getCodigo() {
-        return null;
+        return this.codigo;
     }
 
     public int getPreco() {
-        return 0;
+        return this.preco;
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 }

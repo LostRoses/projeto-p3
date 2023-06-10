@@ -650,4 +650,8 @@ public class Menus {
         }
         return false;
     }
+
+    public static Cliente getClienteLogado() {
+        return null;
+    }
 }
