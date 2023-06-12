@@ -27,6 +27,12 @@ public class Cliente extends Usuario {
 
 	}
 
+	public Cliente(String nomeCliente, String cpf2, String senha) {
+	}
+
+	public Cliente(String nome, String endereco, String telefone, String email) {
+	}
+
 	public String getCode() {
 		return code;
 	}

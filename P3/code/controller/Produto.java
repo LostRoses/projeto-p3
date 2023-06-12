@@ -66,6 +66,9 @@ public class Produto extends JFrame {
     public Produto(String nome, int preco, String codigo, int estoque) {
     }
 
+    public Produto(String nomeProduto, double preco2) {
+    }
+
     private void abrirCadastroCliente() {
         JFrame clienteFrame = new JFrame("Cadastro de Cliente");
         clienteFrame.setSize(400, 300);

@@ -1,6 +1,9 @@
 package P3.code.controller;
 
+import java.awt.Container;
 import java.util.LinkedList;
+import java.util.List;
+
 import P3.model.Usuario;
 
 public class Empresa extends Usuario {
@@ -12,6 +15,9 @@ public class Empresa extends Usuario {
   public Empresa(String nome, String telefone, String cnpj, double saldo, String senha) {
 
     this.cnpj = cnpj;
+  }
+
+  public Empresa(String nomeEmpresa, String cnpj2) {
   }
 
   public String getCnpj() {
@@ -40,5 +46,12 @@ public class Empresa extends Usuario {
   }
 
   public void buscarProduto(P3.code.controller.Produto produto) {
+  }
+
+  public List<Produto> getProdutos() {
+    return null;
+  }
+
+  public void cadastrarProduto(String nome, double preco) {
   }
 }

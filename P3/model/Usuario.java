@@ -1,9 +1,6 @@
 package P3.model;
 
-import P3.model.Usuario;
-
 public abstract class Usuario {
-
     protected String nome;
     protected String telefone;
     protected double saldo;
@@ -40,5 +37,4 @@ public abstract class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
 }

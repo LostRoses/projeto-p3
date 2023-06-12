@@ -7,4 +7,8 @@ public class Remedio extends Produto {
         super(nome, preco, codigo, estoque);
         this.info = info;
     }
+
+    public String getInfo() {
+        return "Caso os sintomas piorem, consulte um médico. \n" + info;
+    }
 }

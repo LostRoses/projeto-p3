@@ -650,4 +650,14 @@ public class Menus {
         }
         return false;
     }
+
+    public static void mostrarMenu() {
+    }
+
+    public static Empresa getEmpresa() {
+        return null;
+    }
+
+    public static void cadastrarCliente(Cliente cliente) {
+    }
 }
