@@ -8,12 +8,3 @@ public class Remedio extends Produto {
         this.info = info;
     }
 }
-
-/*
- * @Override
- * public String getInfo() {
- * return "Caso os sintomas piores, consulte um médico. \n" + info;
- * }
- * 
- * }
- */

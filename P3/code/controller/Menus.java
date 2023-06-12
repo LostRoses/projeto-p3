@@ -453,7 +453,7 @@ public class Menus {
             if (retorno == false) {// Aqui ele da a escolha para tentar fazer login novamente
                 System.out.println("");
                 System.out.println("Login inválido... Deseja tentar denovo?");
-                System.out.println("Digite [1] para sim,[2] para nÃ£o: ");
+                System.out.println("Digite [1] para sim,[2] para nao: ");
                 int a = in.nextInt();
                 if (a == 2) {
                     break;
@@ -499,7 +499,7 @@ public class Menus {
         System.out.print("Informe uma senha: ");
         String senha = in.next();
 
-        System.out.print("Informe a quantia que deseja depositar para compras no App: ");
+        System.out.print("Informe a quantia que deseja depositar para comprar: ");
         int token = in.nextInt();
 
         boolean cd = verificarCD(cpf, senha);// verificando se jÃ¡ existe conta utilizando esse cpf ou senha
@@ -649,9 +649,5 @@ public class Menus {
             }
         }
         return false;
-    }
-
-    public static Cliente getClienteLogado() {
-        return null;
     }
 }
